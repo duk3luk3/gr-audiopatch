@@ -15,3 +15,7 @@ Use Gnu Radio audio sinks to create audio pass-through and monitoring
 ## How to run without pipewire (i.e. with stock pulseaudio)
 
 Skip step 3, but change all the audio devices from `pipewire_xxx` to `default`
+
+## How to run extra cursed
+
+Build pipewire from source with the patch in [patch/alsa_dev_patch.patch](patch/alsa_dev_patch.patch) applied. Now the pipewire aliases will actually do something and be visible in pavucontrol.

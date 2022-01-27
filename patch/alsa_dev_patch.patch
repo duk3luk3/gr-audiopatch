@@ -1,0 +1,16 @@
+diff --git a/pipewire-alsa/alsa-plugins/pcm_pipewire.c b/pipewire-alsa/alsa-plugins/pcm_pipewire.c
+index f3ff8ec51..3f7047d75 100644
+--- a/pipewire-alsa/alsa-plugins/pcm_pipewire.c
++++ b/pipewire-alsa/alsa-plugins/pcm_pipewire.c
+@@ -1075,8 +1075,9 @@ static int snd_pcm_pipewire_open(snd_pcm_t **pcmp, const char *name,
+ 
+ 	props = pw_properties_new(NULL, NULL);
+ 
+-	pw_properties_setf(props, PW_KEY_APP_NAME, "PipeWire ALSA [%s]",
+-			pw_get_prgname());
++	pw_properties_set(props, "application.alsa.devname", name);
++	pw_properties_setf(props, PW_KEY_APP_NAME, "PipeWire ALSA [%s] [%s]",
++			name, pw_get_prgname());
+ 
+ 	if (server_name)
+ 		pw_properties_set(props, PW_KEY_REMOTE_NAME, server_name);
