@@ -24,6 +24,7 @@ from PyQt5 import Qt
 from gnuradio import qtgui
 from gnuradio.filter import firdes
 import sip
+from datetime import datetime
 from gnuradio import audio
 from gnuradio import blocks
 from gnuradio import gr
@@ -74,7 +75,6 @@ class audiomix(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.wav_file = wav_file = "dummy.wav"
         self.samp_rate = samp_rate = 32000
 
         ##################################################
@@ -179,7 +179,8 @@ class audiomix(gr.top_block, Qt.QWidget):
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
         self.qtgui_time_sink_x_0.set_block_alias("Meter_Mic")
         self.blocks_wavfile_sink_0 = blocks.wavfile_sink(
-            wav_file,
+            "dump" + datetime.now().strftime("%Y_%m_%dT%H.%M") + ".wav"
+        ,
             2,
             samp_rate,
             blocks.FORMAT_WAV,
@@ -216,13 +217,6 @@ class audiomix(gr.top_block, Qt.QWidget):
         self.wait()
 
         event.accept()
-
-    def get_wav_file(self):
-        return self.wav_file
-
-    def set_wav_file(self, wav_file):
-        self.wav_file = wav_file
-        self.blocks_wavfile_sink_0.open(self.wav_file)
 
     def get_samp_rate(self):
         return self.samp_rate

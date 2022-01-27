@@ -44,18 +44,6 @@ blocks:
     coordinate: [40, 100.0]
     rotation: 0
     state: enabled
-- name: wav_file
-  id: variable
-  parameters:
-    comment: ''
-    value: '"dummy.wav"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [216, 20.0]
-    rotation: 0
-    state: true
 - name: audio_sink_0
   id: audio_sink
   parameters:
@@ -151,7 +139,9 @@ blocks:
     comment: 'wav_dump
 
       Dump all audio to WAV'
-    file: wav_file
+    file: '"dump" + datetime.now().strftime("%Y_%m_%dT%H.%M") + ".wav"
+
+      '
     format: FORMAT_WAV
     nchan: '2'
     samp_rate: samp_rate
@@ -160,6 +150,19 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [520, 220.0]
+    rotation: 0
+    state: true
+- name: import_0
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: from datetime import datetime
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [216, 20.0]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0
