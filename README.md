@@ -11,3 +11,7 @@ Use Gnu Radio audio sinks to create audio pass-through and monitoring
 3. Copy `50-pipewire-aliases.conf` to `/etc/alsa/conf.d/50-pipewire-aliases.conf`
 4. Run audiomix.py or open audiomix.grc in Gnu Radio Companion and run
 5. Use pavucontrol to assign the right devices
+
+## How to run without pipewire (i.e. with stock pulseaudio)
+
+Skip step 3, but change all the audio devices from `pipewire_xxx` to `default`
